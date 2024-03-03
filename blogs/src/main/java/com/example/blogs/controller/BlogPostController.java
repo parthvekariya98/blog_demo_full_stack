@@ -1,5 +1,5 @@
 package com.example.blogs.controller;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
 import com.example.blogs.exception.ResourceNotFoundException;
 import com.example.blogs.model.BlogPost;
 import com.example.blogs.repository.BlogPostRepository;
@@ -11,6 +11,7 @@ import java.util.List;
 
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api/blog/posts")
 public class BlogPostController {
 

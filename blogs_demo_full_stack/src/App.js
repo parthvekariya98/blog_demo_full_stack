@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col, Card, CardBody } from 'reactstrap';
+import axios from 'axios';
 
 const App = () => {
-  const [posts, setPosts] = useState([{
-    id: 1,
-    title: 'test',
-    content: 'test content',
-    createdAt: '22-02-2024'
-  },
-  {
-    id: 2,
-    title: 'test',
-    content: 'test content',
-    createdAt: '22-02-2024'
-  }]);
+  const [posts, setPosts] = useState([]);
 
   useEffect(() => {
+    const fetchBlogsData = async () => {
+      try {
+        const response = await axios.get('http://localhost:8080/api/blog/posts');
+        console.log(response)
+        setPosts(response.data);
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    };
 
+    fetchBlogsData();
   }, []);
 
   return (
