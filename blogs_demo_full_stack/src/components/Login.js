@@ -12,7 +12,8 @@ const Login = () => {
         try {
             const response = await axios.post('http://localhost:8080/api/login', { username, password });
             console.log(response.data);
-            if (response.data) {
+            if (response.status === 200) {
+                localStorage.setItem('user', JSON.stringify(response.data));
                 navigate('/dashboard');
             } else {
                 alert("Something went wrong!!");

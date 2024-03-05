@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -27,8 +28,13 @@ public class BlogPostController {
     // POST create a new blog post
     @PostMapping
     public BlogPost createBlogPost(@RequestBody BlogPost blogPost) {
+        // Set the current date/time as createdAt if not provided
+        if (blogPost.getCreatedAt() == null || blogPost.getCreatedAt().isEmpty()) {
+            blogPost.setCreatedAt(LocalDateTime.now().toString());
+        }
         return blogPostRepository.save(blogPost);
     }
+
 
     // PUT update an existing blog post
     @PutMapping("/{id}")

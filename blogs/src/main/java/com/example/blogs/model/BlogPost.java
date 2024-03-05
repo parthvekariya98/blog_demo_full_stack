@@ -17,14 +17,18 @@ public class BlogPost {
 
     private String createdAt;
 
+    @Column
+    private String author;
+
     // Constructors
     public BlogPost() {
     }
 
-    public BlogPost(String title, String content, String createdAt) {
+    public BlogPost(String title, String content, String createdAt, String author) {
         this.title = title;
         this.content = content;
         this.createdAt = createdAt;
+        this.author = author;
     }
 
     // Getters and setters
@@ -58,5 +62,13 @@ public class BlogPost {
 
     public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 }

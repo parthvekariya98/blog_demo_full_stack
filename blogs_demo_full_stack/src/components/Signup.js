@@ -12,11 +12,12 @@ const Signup = () => {
         e.preventDefault();
         try {
             const response = await axios.post('http://localhost:8080/api/signup', { username, email, password });
-            console.log('User signed up successfully');
-            if (response.status != 200) {
-                alert("Something went wrong!!");
-            } else {
+            if (response.status === 200) {
+                localStorage.setItem('user', JSON.stringify({ username, email }));
+                console.log('User signed up successfully');
                 navigate('/dashboard');
+            } else {
+                alert("Something went wrong!!");
             }
 
         } catch (error) {
