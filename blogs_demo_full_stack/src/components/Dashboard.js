@@ -103,9 +103,9 @@ const Dashboard = () => {
                     <Button color="secondary" onClick={toggleModal}>Cancel</Button>
                 </ModalFooter>
             </Modal>
-            <Row>
+            <Row className="justify-content-center">
                 {posts.map(post => (
-                    <Col key={post.id} sm="6" md="4" lg="3" className="mb-4">
+                    <Col key={post.id} xs="8" className="mb-4">
                         <Card>
                             <CardBody>
                                 <h5 className="card-title">{post.title}</h5>
