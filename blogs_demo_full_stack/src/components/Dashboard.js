@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col, Card, CardBody, Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, Input } from 'reactstrap';
 import axios from 'axios';
 import { FaUser } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link, useParams } from 'react-router-dom';
 
 const Dashboard = () => {
     const [posts, setPosts] = useState([]);
@@ -106,14 +106,19 @@ const Dashboard = () => {
             <Row className="justify-content-center">
                 {posts.map(post => (
                     <Col key={post.id} xs="8" className="mb-4">
-                        <Card>
-                            <CardBody>
-                                <h5 className="card-title">{post.title}</h5>
-                                <p className="card-text">{post.content.substring(0, 100)}...</p>
-                                <p className="card-text"><small className="text-muted">Created at: {post.createdAt}</small></p>
-                                <p className="card-text"><small className="text-muted">Author: {post.author}</small></p>
-                            </CardBody>
-                        </Card>
+                        <Link to={`/blogdetails/${post.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                            <Card>
+                                <CardBody>
+                                    <div className="d-flex align-items-center mb-3">
+                                        <FaUser size={24} className="me-2" />
+                                        <p className="m-0">{post.author}</p>
+                                    </div>
+                                    <h5 className="card-title">{post.title}</h5>
+                                    <p className="card-text">{post.content.substring(0, 100)}...</p>
+                                    <p className="card-text"><small className="text-muted">Created at: {post.createdAt}</small></p>
+                                </CardBody>
+                            </Card>
+                        </Link>
                     </Col>
                 ))}
             </Row>

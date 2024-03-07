@@ -25,6 +25,13 @@ public class BlogPostController {
         return blogPostRepository.findAll();
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<BlogPost> getBlogPostById(@PathVariable Long id) {
+        BlogPost post = blogPostRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Blog post not found with id: " + id));
+        return ResponseEntity.ok(post);
+    }
+
     // POST create a new blog post
     @PostMapping
     public BlogPost createBlogPost(@RequestBody BlogPost blogPost) {
