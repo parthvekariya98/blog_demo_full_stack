@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col, Card, CardBody, Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, Input } from 'reactstrap';
 import axios from 'axios';
-import { FaUser } from 'react-icons/fa';
+import { FaUser, FaChartBar, FaInfoCircle, FaEnvelope } from 'react-icons/fa'; // Importing icons
 import { useNavigate, Link, useParams } from 'react-router-dom';
 
 const Dashboard = () => {
@@ -62,28 +62,82 @@ const Dashboard = () => {
     }, []);
 
     return (
-        <Container>
-            <Row className="mt-5 mb-4">
-                <Col>
-                    <h1>Welcome to Blog Posts</h1>
+        <Container fluid>
+            <Row>
+                <Col md={2} className="bg-light text-dark py-4">
+                    <Col>
+                        <h2>Welcome to Blog Posts</h2>
+                    </Col>
+                    <ul className="list-unstyled mb-5">
+                        <li>
+                            <Link to="/dashboard" className="text-dark">
+                                <FaChartBar className="me-2" />Dashboard {/* Added icon */}
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/blogdetails" className="text-dark">
+                                <FaInfoCircle className="me-2" />Blog Details {/* Added icon */}
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/about" className="text-dark">
+                                <FaInfoCircle className="me-2" />About {/* Added icon */}
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/contact" className="text-dark">
+                                <FaEnvelope className="me-2" />Contact {/* Added icon */}
+                            </Link>
+                        </li>
+                    </ul>
+
+                    <p className="mb-4 text-muted small">BlogPost Community a constructive and inclusive social network for software developers. With you every step of your journey.</p>
+                    <p className="mb-4 text-muted small">Built on Forem — the open source software that powers BlogPost and other inclusive communities.</p>
+                    <p className="mb-0 text-muted small">Made with love in React and Java. BlogPost Community © 2024</p>
                 </Col>
-                <Col className="text-end">
-                    {user && (
-                        <div className="d-flex align-items-center justify-content-end">
-                            <FaUser size={24} className="me-2" />
-                            <div>
-                                <p className="m-0">{user.username}</p>
-                            </div>
-                            <Button color="link" onClick={handleLogout}>Logout</Button>
-                        </div>
-                    )}
+                <Col md={10} className="bg-light">
+                    <Container className="pt-4">
+                        <Row className="mb-4">
+
+                            <Col className="text-end">
+                                {user && (
+                                    <div className="d-flex align-items-center justify-content-end">
+                                        <FaUser size={24} className="me-2" />
+                                        <div>
+                                            <p className="m-0">{user.username}</p>
+                                        </div>
+                                        <Button color="link" onClick={handleLogout}>Logout</Button>
+                                    </div>
+                                )}
+                            </Col>
+                        </Row>
+                        <Row className="mb-4">
+                            <Col className="text-end">
+                                <Button color="primary" onClick={toggleModal}>Add New Blog</Button>
+                            </Col>
+                        </Row>
+                        <Row>
+                            {posts.map(post => (
+                                <Col key={post.id} xs="12" md="6" lg="4" className="mb-4">
+                                    <Link to={`/blogdetails/${post.id}`} className="text-decoration-none text-dark">
+                                        <Card className="h-100">
+                                            <CardBody className="d-flex flex-column">
+                                                <div className="d-flex align-items-center mb-3">
+                                                    <FaUser size={24} className="me-2" />
+                                                    <p className="m-0">{post.author}</p>
+                                                </div>
+                                                <h5 className="card-title">{post.title}</h5>
+                                                <p className="card-text">{post.content.substring(0, 100)}...</p>
+                                            </CardBody>
+                                        </Card>
+                                    </Link>
+                                </Col>
+                            ))}
+                        </Row>
+                    </Container>
                 </Col>
             </Row>
-            <Row className="mt-5 mb-4">
-                <Col className="d-flex justify-content-end">
-                    <Button color="primary" onClick={toggleModal}>Add New Blog</Button>
-                </Col>
-            </Row>
+
             <Modal isOpen={modal} toggle={toggleModal}>
                 <ModalHeader toggle={toggleModal}>Add New Blog</ModalHeader>
                 <ModalBody>
@@ -103,25 +157,6 @@ const Dashboard = () => {
                     <Button color="secondary" onClick={toggleModal}>Cancel</Button>
                 </ModalFooter>
             </Modal>
-            <Row className="justify-content-center">
-                {posts.map(post => (
-                    <Col key={post.id} xs="8" className="mb-4">
-                        <Link to={`/blogdetails/${post.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                            <Card>
-                                <CardBody>
-                                    <div className="d-flex align-items-center mb-3">
-                                        <FaUser size={24} className="me-2" />
-                                        <p className="m-0">{post.author}</p>
-                                    </div>
-                                    <h5 className="card-title">{post.title}</h5>
-                                    <p className="card-text">{post.content.substring(0, 100)}...</p>
-                                    <p className="card-text"><small className="text-muted">Created at: {post.createdAt}</small></p>
-                                </CardBody>
-                            </Card>
-                        </Link>
-                    </Col>
-                ))}
-            </Row>
         </Container>
     );
 };
