@@ -98,13 +98,27 @@ const Dashboard = () => {
                 <Col md={10} className="bg-light">
                     <Container className="pt-4">
                         <Row className="mb-4">
+
+                            <Col className="text-end">
+                                {user && (
+                                    <div className="d-flex align-items-center justify-content-end">
+                                        <FaUser size={24} className="me-2" />
+                                        <div>
+                                            <p className="m-0">{user.username}</p>
+                                        </div>
+                                        <Button color="link" onClick={handleLogout}>Logout</Button>
+                                    </div>
+                                )}
+                            </Col>
+                        </Row>
+                        <Row className="mb-4">
                             <Col className="text-end">
                                 <Button color="primary" onClick={toggleModal}>Add New Blog</Button>
                             </Col>
                         </Row>
-                        {posts.map(post => (
-                            <Row key={post.id} className="mb-4">
-                                <Col md={{ size: 8, offset: 2 }}>
+                        <Row>
+                            {posts.map(post => (
+                                <Col key={post.id} xs="12" md="6" lg="4" className="mb-4">
                                     <Link to={`/blogdetails/${post.id}`} className="text-decoration-none text-dark">
                                         <Card className="h-100">
                                             <CardBody className="d-flex flex-column">
@@ -118,10 +132,9 @@ const Dashboard = () => {
                                         </Card>
                                     </Link>
                                 </Col>
-                            </Row>
-                        ))}
+                            ))}
+                        </Row>
                     </Container>
-
                 </Col>
             </Row>
 
