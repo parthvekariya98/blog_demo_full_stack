@@ -16,9 +16,9 @@ const Header = () => {
                 <Navbar.Brand href="/">
                     <img
                         src={logo}
-                        height="30"
+                        height="38"
                         className="d-inline-block align-top"
-                        alt="Your Logo"
+                        alt="blogify logo"
                     />
                 </Navbar.Brand>
                 <InputGroup className="ms-auto">

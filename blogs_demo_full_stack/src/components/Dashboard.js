@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {
+    FaUser,
+    FaChartBar,
+    FaInfoCircle,
+    FaEnvelope
+} from 'react-icons/fa';
 import { Container, Row, Col, Card, CardBody, Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, Input } from 'reactstrap';
 import axios from 'axios';
-import { FaUser, FaChartBar, FaInfoCircle, FaEnvelope } from 'react-icons/fa'; // Importing icons
-import { useNavigate, Link, useParams } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const Dashboard = () => {
     const [posts, setPosts] = useState([]);
