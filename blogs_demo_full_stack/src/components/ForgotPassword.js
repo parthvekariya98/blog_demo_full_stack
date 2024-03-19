@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import logo from '../images/blogify_logo.png';
 
 const ForgotPassword = () => {
     const navigate = useNavigate();
@@ -21,13 +22,18 @@ const ForgotPassword = () => {
         <div className="d-flex justify-content-center align-items-center" style={{ minHeight: "100vh" }}>
             <div className="container" style={{ maxWidth: "400px" }}>
                 <div className="card shadow">
-                    <div className="card-body">
-                        <h1 className="card-title text-center mb-4">Forgot your password?</h1>
-                        <p className="text-center mb-3">Enter the email address associated with your account, and we'll send you a link to reset your password.</p>
+                    <div className="card-body text-center">
+                        <img
+                            src={logo}
+                            height="38"
+                            className="mb-4"
+                            alt="blogify logo"
+                        />
+                        <h2 className="card-title mb-4">Forgot your password?</h2>
+                        <p className="mb-3">Enter the email address associated with your account, and we'll send you a link to reset your password.</p>
                         <form onSubmit={handleResetPassword}>
                             <div className="mb-3">
-                                <label htmlFor="email" className="form-label">Email</label>
-                                <input type="email" className="form-control" id="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                                <input type="email" className="form-control" id="email" placeholder="Enter your email" value={email} onChange={(e) => setEmail(e.target.value)} />
                             </div>
                             {message && <p className="text-success mb-3">{message}</p>}
                             {error && <p className="text-danger mb-3">{error}</p>}

@@ -76,22 +76,22 @@ const Dashboard = () => {
                     <ul className="list-unstyled mb-5">
                         <li>
                             <Link to="/dashboard" className="text-dark">
-                                <FaChartBar className="me-2" />Dashboard {/* Added icon */}
+                                <FaChartBar className="me-2" />Dashboard
                             </Link>
                         </li>
                         <li>
                             <Link to="/blogdetails" className="text-dark">
-                                <FaInfoCircle className="me-2" />Blog Details {/* Added icon */}
+                                <FaInfoCircle className="me-2" />Blog Details
                             </Link>
                         </li>
                         <li>
                             <Link to="/about" className="text-dark">
-                                <FaInfoCircle className="me-2" />About {/* Added icon */}
+                                <FaInfoCircle className="me-2" />About
                             </Link>
                         </li>
                         <li>
                             <Link to="/contact" className="text-dark">
-                                <FaEnvelope className="me-2" />Contact {/* Added icon */}
+                                <FaEnvelope className="me-2" />Contact
                             </Link>
                         </li>
                     </ul>
